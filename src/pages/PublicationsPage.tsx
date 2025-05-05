@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import { ExternalLink, Filter } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 import { publications as allPublications } from '@/data/publications';
 import { Button } from '@/components/ui/button';
 import { 
@@ -12,23 +12,13 @@ import {
 
 const PublicationsPage: React.FC = () => {
   const [filter, setFilter] = useState<string>('all');
-  const [sortBy, setSortBy] = useState<'year' | 'citations'>('year');
   
   const filteredPublications = allPublications
     .filter(pub => {
       if (filter === 'all') return true;
       return pub.type === filter;
     })
-    .sort((a, b) => {
-      if (sortBy === 'year') {
-        return b.year - a.year;
-      } else {
-        // Default to 0 if citations is undefined
-        const citesA = a.citations || 0;
-        const citesB = b.citations || 0;
-        return citesB - citesA;
-      }
-    });
+    .sort((a, b) => b.year - a.year); // Always sort by year (most recent first)
 
   const publicationTypes = ['all', ...new Set(allPublications.map(p => p.type))];
   
@@ -47,7 +37,7 @@ const PublicationsPage: React.FC = () => {
         
         <section className="section bg-white">
           <div className="container max-w-3xl">
-            <div className="mb-8 flex flex-wrap gap-4 justify-between items-center">
+            <div className="mb-8 flex flex-wrap gap-4 justify-center">
               <div className="flex flex-wrap gap-2">
                 {publicationTypes.map(type => (
                   <Button 
@@ -59,23 +49,6 @@ const PublicationsPage: React.FC = () => {
                     {type}
                   </Button>
                 ))}
-              </div>
-              <div className="flex items-center gap-2">
-                <Filter size={20} className="mr-1 text-gray-500" />
-                <Button 
-                  variant={sortBy === 'year' ? "default" : "outline"}
-                  onClick={() => setSortBy('year')}
-                  size="sm"
-                >
-                  Sort by Year
-                </Button>
-                <Button 
-                  variant={sortBy === 'citations' ? "default" : "outline"}
-                  onClick={() => setSortBy('citations')}
-                  size="sm"
-                >
-                  Sort by Citations
-                </Button>
               </div>
             </div>
             
