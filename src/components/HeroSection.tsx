@@ -17,9 +17,9 @@ const HeroSection: React.FC = () => {
           }}
         ></div>
         
-        {/* Blurred circles - increased opacity and more vibrant colors */}
-        <div className="absolute -left-10 top-1/3 w-96 h-96 rounded-full bg-[#FFC2A4] blur-[80px] opacity-40 mix-blend-multiply"></div>
-        <div className="absolute right-1/3 -top-20 w-96 h-96 rounded-full bg-[#FEEAA0] blur-[80px] opacity-40 mix-blend-multiply"></div>
+        {/* Blurred circles - diverse sizes and repositioned yellow circle */}
+        <div className="absolute -left-10 top-1/3 w-112 h-112 rounded-full bg-[#FFC2A4] blur-[80px] opacity-40 mix-blend-multiply"></div>
+        <div className="absolute right-1/3 top-1/4 w-80 h-80 rounded-full bg-[#FEEAA0] blur-[80px] opacity-40 mix-blend-multiply"></div>
         <div className="absolute right-0 bottom-0 w-96 h-96 rounded-full bg-[#D0C7FF] blur-[80px] opacity-40 mix-blend-multiply"></div>
       </div>
       
