@@ -65,7 +65,8 @@ const BlogPostPage: React.FC = () => {
             <div className="prose prose-lg max-w-none">
               {post.content.split('\n').map((line, i) => {
                 if (line.startsWith('# ')) {
-                  return <h1 key={i} className="font-playfair text-3xl font-medium mt-8 mb-4">{line.substring(2)}</h1>;
+                  // Skip rendering H1 titles since we already have the title above
+                  return null; 
                 } else if (line.startsWith('## ')) {
                   return <h2 key={i} className="font-playfair text-2xl font-medium mt-8 mb-4">{line.substring(3)}</h2>;
                 } else if (line.startsWith('- ')) {

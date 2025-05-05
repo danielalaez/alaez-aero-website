@@ -2,33 +2,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-
-// This would typically come from your data store
-const blogPosts = [
-  {
-    id: 1,
-    title: 'Recent Advancements in VTOL Drone Technology',
-    excerpt: 'An overview of the latest innovations in vertical take-off and landing drone technologies and their applications.',
-    date: 'April 28, 2024',
-    slug: 'vtol-drone-technology'
-  },
-  {
-    id: 2,
-    title: 'Digital Twins in Aerospace Engineering: A Case Study',
-    excerpt: 'Exploring how digital twin technology is transforming aerospace engineering and aircraft maintenance.',
-    date: 'March 15, 2024',
-    slug: 'digital-twins-aerospace'
-  },
-  {
-    id: 3,
-    title: 'Aerodynamic Challenges in UAV Design',
-    excerpt: 'A technical analysis of the unique aerodynamic challenges encountered in designing small-scale unmanned aerial vehicles.',
-    date: 'February 2, 2024',
-    slug: 'aerodynamic-challenges-uav'
-  }
-];
+import { blogPosts } from '@/data/blogPosts';
 
 const BlogSection: React.FC = () => {
+  // Get only the 3 most recent posts for the homepage
+  const recentPosts = blogPosts.slice(0, 3);
+  
   return (
     <section className="section bg-white">
       <div className="container">
@@ -38,8 +17,8 @@ const BlogSection: React.FC = () => {
         </p>
         
         <div className="max-w-3xl mx-auto space-y-6">
-          {blogPosts.map((post) => (
-            <div key={post.id} className="bg-white p-6 border border-gray-100 rounded-md shadow-sm">
+          {recentPosts.map((post, index) => (
+            <div key={index} className="bg-white p-6 border border-gray-100 rounded-md shadow-sm">
               <p className="text-sm text-gray-500 mb-2">{post.date}</p>
               <h3 className="font-playfair text-xl mb-2">{post.title}</h3>
               <p className="text-gray-600 mb-4">{post.excerpt}</p>
