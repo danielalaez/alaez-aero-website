@@ -57,7 +57,12 @@ export function generateSlug(title: string): string {
 }
 
 export function formatBlogPost(parsedMarkdown: ParsedMarkdown, slug: string): BlogPost {
+  // Generate a simple numeric ID based on the current timestamp
+  // This ensures each post gets a unique ID
+  const id = Date.now();
+  
   return {
+    id,
     title: parsedMarkdown.title,
     date: parsedMarkdown.date,
     excerpt: parsedMarkdown.excerpt,
