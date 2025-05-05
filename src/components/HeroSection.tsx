@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
@@ -31,8 +30,7 @@ const HeroSection: React.FC = () => {
               Daniel Aláez Gómez
             </h1>
             <p className="text-gray-600 text-lg mb-8 leading-relaxed">
-              Aerospace Engineer & Researcher specializing in unmanned aerial vehicles (UAVs), 
-              particularly vertical take-off and landing (VTOL) drones.
+              Aerospace engineer & researcher specializing in embedded systems, Unmanned Aerial Vehicles (UAVs) and simulation.
             </p>
             <div className="flex flex-wrap gap-4">
               <Button asChild className="bg-navy hover:bg-navy/90">
@@ -47,7 +45,7 @@ const HeroSection: React.FC = () => {
           <div className="bg-white p-8 shadow-xl rounded-md relative z-10">
             <h2 className="font-playfair text-2xl mb-4">Current Position</h2>
             <p className="mb-4">
-              <strong className="font-medium">Substitute Lecturer</strong><br />
+              <strong className="font-medium">Assistant Lecturer & Researcher</strong><br />
               Department of Statistics, Computer Science, and Mathematics<br />
               Public University of Navarre (UPNA)
             </p>

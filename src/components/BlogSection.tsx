@@ -13,7 +13,7 @@ const BlogSection: React.FC = () => {
       <div className="container">
         <h2 className="font-playfair text-3xl md:text-4xl font-medium mb-4 text-center">Latest Blog Posts</h2>
         <p className="text-gray-600 text-center max-w-2xl mx-auto mb-12">
-          Insights and thoughts on drone technology, aerospace engineering, and academic research.
+          Insights and thoughts on UAVs, simulation and academic research.
         </p>
         
         <div className="max-w-3xl mx-auto space-y-6">

@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Linkedin, FileText, Globe, Mail } from 'lucide-react';
@@ -9,7 +8,7 @@ const ContactSection: React.FC = () => {
       <div className="container">
         <h2 className="font-playfair text-3xl md:text-4xl font-medium mb-4 text-center">Contact</h2>
         <p className="text-gray-600 text-center max-w-2xl mx-auto mb-12">
-          Get in touch for research collaborations, academic inquiries, or speaking opportunities.
+          If you are passionate about aerial robotics and UAVs, I'd love to hear from you.
         </p>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
@@ -78,7 +77,7 @@ const ContactSection: React.FC = () => {
           
           <div className="bg-white p-8 border border-gray-200 rounded-md shadow-sm">
             <h3 className="font-playfair text-2xl mb-6">Send a Message</h3>
-            <form>
+            <form action="mailto:daniel.alaez@unavarra.es" method="post" encType="text/plain">
               <div className="mb-4">
                 <label htmlFor="name" className="block mb-2 font-medium">Name</label>
                 <input 

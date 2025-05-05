@@ -15,7 +15,7 @@ const ContactPage: React.FC = () => {
           <div className="container relative z-20">
             <h1 className="font-playfair text-4xl md:text-5xl font-medium mb-6 text-center">Contact</h1>
             <p className="text-gray-600 text-center max-w-2xl mx-auto mb-12">
-              Get in touch for research collaborations, academic inquiries, or speaking opportunities.
+              If you are passionate about aerial robotics and UAVs, I'd love to hear from you.
             </p>
           </div>
         </section>

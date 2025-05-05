@@ -16,7 +16,7 @@ const BlogPage: React.FC = () => {
           <div className="container relative z-20">
             <h1 className="font-playfair text-4xl md:text-5xl font-medium mb-6 text-center">Blog</h1>
             <p className="text-gray-600 text-center max-w-2xl mx-auto mb-12">
-              Thoughts, research notes, and insights on aerospace engineering, drone technology, and academic research.
+              Insights and thoughts on UAVs, simulation and academic research.
             </p>
           </div>
         </section>
