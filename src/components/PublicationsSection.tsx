@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ExternalLink } from 'lucide-react';
 import { publications } from '@/data/publications';
+import { Card, CardContent } from '@/components/ui/card';
 
 const PublicationsSection: React.FC = () => {
   // Get 3 most recent publications for the home page
@@ -19,39 +20,36 @@ const PublicationsSection: React.FC = () => {
           Selected peer-reviewed articles and conference papers from my research work.
         </p>
         
-        <div className="space-y-6">
+        <div className="space-y-6 max-w-3xl mx-auto">
           {recentPublications.map((pub) => (
-            <div key={pub.id} className="bg-white p-6 border border-gray-100 rounded-md shadow-sm">
-              <h3 className="font-playfair text-xl mb-2">{pub.title}</h3>
-              <p className="text-gray-600 mb-2">{pub.authors}</p>
-              <div className="flex flex-wrap gap-2 mb-2">
-                <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
-                  {pub.year}
-                </span>
-                {pub.citations && (
-                  <span className="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">
-                    {pub.citations} citations
+            <Card key={pub.id} className="bg-white border border-gray-100 shadow-sm">
+              <CardContent className="p-6">
+                <h3 className="font-playfair text-xl mb-2">{pub.title}</h3>
+                <p className="text-gray-600 mb-2">{pub.authors}</p>
+                <div className="flex flex-wrap gap-2 mb-2">
+                  <span className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">
+                    {pub.year}
                   </span>
+                  <span className="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded-full capitalize">
+                    {pub.type}
+                  </span>
+                </div>
+                <p className="text-gray-500 mb-4 italic">
+                  {pub.source}
+                </p>
+                {pub.doi && (
+                  <a 
+                    href={pub.doi.startsWith('http') ? pub.doi : `https://doi.org/${pub.doi}`} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="text-navy font-medium hover:underline inline-flex items-center"
+                  >
+                    View Publication
+                    <ExternalLink size={16} className="ml-1" />
+                  </a>
                 )}
-                <span className="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded-full capitalize">
-                  {pub.type}
-                </span>
-              </div>
-              <p className="text-gray-500 mb-4 italic">
-                {pub.source}
-              </p>
-              {pub.doi && (
-                <a 
-                  href={pub.doi.startsWith('http') ? pub.doi : `https://doi.org/${pub.doi}`} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="text-navy font-medium hover:underline inline-flex items-center"
-                >
-                  View Publication
-                  <ExternalLink size={16} className="ml-1" />
-                </a>
-              )}
-            </div>
+              </CardContent>
+            </Card>
           ))}
         </div>
         
