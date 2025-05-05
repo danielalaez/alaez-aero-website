@@ -53,7 +53,7 @@ const ResearchSection: React.FC = () => {
           <h3 className="font-playfair text-2xl mb-4 text-center">Interested in Collaborating?</h3>
           <p className="text-center mb-6 max-w-2xl mx-auto">
             I'm actively seeking motivated students and researchers interested in drone technology, 
-            aerodynamics, and simulation. If you're passionate about aerospace engineering and UAVs, 
+            aerodynamics, and simulation. If you are passionate about aerial robotics and UAVs, 
             I'd love to hear from you.
           </p>
           <div className="text-center">
