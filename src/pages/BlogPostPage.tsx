@@ -69,7 +69,8 @@ const BlogPostPage: React.FC = () => {
                 } else if (line.startsWith('## ')) {
                   return <h2 key={i} className="font-playfair text-2xl font-medium mt-8 mb-4">{line.substring(3)}</h2>;
                 } else if (line.startsWith('- ')) {
-                  return <li key={i} className="ml-6 mb-2">{parseMarkdown(line.substring(2))}</li>;
+                  const parsedContent = parseMarkdown(line.substring(2));
+                  return <li key={i} className="ml-6 mb-2" dangerouslySetInnerHTML={{ __html: parsedContent }} />;
                 } else if (line.trim() === '') {
                   return <br key={i} />;
                 } else {
