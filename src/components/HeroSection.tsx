@@ -1,0 +1,59 @@
+
+import React from 'react';
+import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
+
+const HeroSection: React.FC = () => {
+  return (
+    <section className="pt-32 pb-20 md:pt-40 md:pb-32 bg-[#F8F8F8]">
+      <div className="container">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+          <div>
+            <h1 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-semibold mb-6 leading-tight">
+              Daniel Aláez Gómez
+            </h1>
+            <p className="text-gray-600 text-lg mb-8 leading-relaxed">
+              Aerospace Engineer & Researcher specializing in unmanned aerial vehicles (UAVs), 
+              particularly vertical take-off and landing (VTOL) drones.
+            </p>
+            <div className="flex flex-wrap gap-4">
+              <Button asChild className="bg-navy hover:bg-navy/90">
+                <Link to="/research">Research Areas</Link>
+              </Button>
+              <Button variant="outline" asChild>
+                <Link to="/contact">Contact Me</Link>
+              </Button>
+            </div>
+          </div>
+          
+          <div className="bg-white p-8 border border-gray-100 shadow-sm rounded-md">
+            <h2 className="font-playfair text-2xl mb-4">Current Position</h2>
+            <p className="mb-4">
+              <strong className="font-medium">Substitute Lecturer</strong><br />
+              Department of Statistics, Computer Science, and Mathematics<br />
+              Public University of Navarre (UPNA)
+            </p>
+            
+            <h2 className="font-playfair text-2xl mb-4 mt-8">Education</h2>
+            <ul className="space-y-4">
+              <li>
+                <p className="font-medium">PhD in Science and Industrial Technologies (2024)</p>
+                <p className="text-gray-600">Public University of Navarre (UPNA)</p>
+              </li>
+              <li>
+                <p className="font-medium">Master's in Aeronautical Engineering (2022)</p>
+                <p className="text-gray-600">University of León</p>
+              </li>
+              <li>
+                <p className="font-medium">Bachelor's in Aerospace Engineering (2020)</p>
+                <p className="text-gray-600">University of León</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default HeroSection;
