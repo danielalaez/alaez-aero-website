@@ -15,6 +15,17 @@ const BlogPostPage: React.FC = () => {
     setPost(foundPost || null);
   }, [slug]);
 
+  // Function to parse markdown text and convert to styled HTML
+  const parseMarkdown = (text: string) => {
+    // Handle bold text (**text**)
+    let formattedText = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+    
+    // Handle italic text (*text*)
+    formattedText = formattedText.replace(/\*(.*?)\*/g, '<em>$1</em>');
+    
+    return formattedText;
+  };
+
   if (!post) {
     return (
       <>
@@ -58,11 +69,17 @@ const BlogPostPage: React.FC = () => {
                 } else if (line.startsWith('## ')) {
                   return <h2 key={i} className="font-playfair text-2xl font-medium mt-8 mb-4">{line.substring(3)}</h2>;
                 } else if (line.startsWith('- ')) {
-                  return <li key={i} className="ml-6 mb-2">{line.substring(2)}</li>;
+                  return <li key={i} className="ml-6 mb-2">{parseMarkdown(line.substring(2))}</li>;
                 } else if (line.trim() === '') {
                   return <br key={i} />;
                 } else {
-                  return <p key={i} className="mb-4 text-gray-800 leading-relaxed">{line}</p>;
+                  return (
+                    <p 
+                      key={i} 
+                      className="mb-4 text-gray-800 leading-relaxed"
+                      dangerouslySetInnerHTML={{ __html: parseMarkdown(line) }}
+                    />
+                  );
                 }
               })}
             </div>
