@@ -8,12 +8,12 @@ const HeroSection: React.FC = () => {
     <section className="pt-32 pb-20 md:pt-40 md:pb-32 bg-[#F8F8F8] relative overflow-hidden">
       {/* Blurred circles background */}
       <div className="absolute inset-0 w-full h-full overflow-hidden">
-        {/* Noise overlay - applying it directly on the circles container for better overlay effect */}
+        {/* Noise overlay - making it more visible with higher opacity and darker base */}
         <div 
-          className="absolute inset-0 z-20 opacity-25 pointer-events-none mix-blend-overlay"
+          className="absolute inset-0 z-20 opacity-40 pointer-events-none mix-blend-multiply"
           style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-            backgroundSize: '200px 200px'
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.5' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' fill='%23333333' opacity='0.15'/%3E%3C/svg%3E")`,
+            backgroundSize: '250px 250px'
           }}
         ></div>
         
@@ -44,7 +44,7 @@ const HeroSection: React.FC = () => {
             </div>
           </div>
           
-          <div className="bg-white p-8 border border-gray-100 shadow-lg rounded-md relative z-10">
+          <div className="bg-white p-8 shadow-lg rounded-md relative z-10">
             <h2 className="font-playfair text-2xl mb-4">Current Position</h2>
             <p className="mb-4">
               <strong className="font-medium">Substitute Lecturer</strong><br />
