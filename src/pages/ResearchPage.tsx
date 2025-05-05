@@ -4,6 +4,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import PageBackground from '@/components/PageBackground';
 
 const researchAreas = [
   {
@@ -69,8 +70,9 @@ const ResearchPage: React.FC = () => {
     <>
       <Header />
       <main>
-        <section className="pt-32 pb-16 md:pt-40 md:pb-24 bg-[#F8F8F8]">
-          <div className="container">
+        <section className="pt-32 pb-16 md:pt-40 md:pb-24 bg-[#F8F8F8] relative overflow-hidden">
+          <PageBackground />
+          <div className="container relative z-20">
             <h1 className="font-playfair text-4xl md:text-5xl font-medium mb-6 text-center">Research</h1>
             <p className="text-gray-600 text-center max-w-2xl mx-auto">
               My research focuses on advancing drone technology through innovative engineering approaches and simulation.

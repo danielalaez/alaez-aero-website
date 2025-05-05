@@ -5,10 +5,8 @@ import Footer from '@/components/Footer';
 import { ExternalLink } from 'lucide-react';
 import { publications as allPublications } from '@/data/publications';
 import { Button } from '@/components/ui/button';
-import { 
-  Card, 
-  CardContent
-} from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
+import PageBackground from '@/components/PageBackground';
 
 const PublicationsPage: React.FC = () => {
   const [filter, setFilter] = useState<string>('all');
@@ -26,8 +24,9 @@ const PublicationsPage: React.FC = () => {
     <>
       <Header />
       <main>
-        <section className="pt-32 pb-16 md:pt-40 md:pb-24 bg-[#F8F8F8]">
-          <div className="container">
+        <section className="pt-32 pb-16 md:pt-40 md:pb-24 bg-[#F8F8F8] relative overflow-hidden">
+          <PageBackground />
+          <div className="container relative z-20">
             <h1 className="font-playfair text-4xl md:text-5xl font-medium mb-6 text-center">Publications</h1>
             <p className="text-gray-600 text-center max-w-2xl mx-auto mb-12">
               Peer-reviewed articles, conference papers, and research contributions.
