@@ -62,30 +62,27 @@ const BlogPage: React.FC = () => {
         </section>
         
         <section className="section bg-white">
-          <div className="container">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="container max-w-3xl">
+            <div className="space-y-6">
               {blogPosts.map((post) => (
-                <article key={post.id} className="border border-gray-100 rounded-md overflow-hidden shadow-sm hover:shadow-md transition-all">
-                  <div className="bg-gray-100 h-48"></div>
-                  <div className="p-6">
-                    <p className="text-sm text-gray-500 mb-2">{post.date}</p>
-                    <h2 className="font-playfair text-2xl mb-3">
-                      <a href={`/blog/${post.slug}`} className="hover:text-navy transition-colors">
-                        {post.title}
-                      </a>
-                    </h2>
-                    <p className="text-gray-600 mb-4">{post.excerpt}</p>
-                    <a 
-                      href={`/blog/${post.slug}`} 
-                      className="text-navy font-medium hover:underline inline-flex items-center"
-                    >
-                      Continue Reading
-                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
-                        <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                      </svg>
+                <div key={post.id} className="bg-white p-6 border border-gray-100 rounded-md shadow-sm">
+                  <p className="text-sm text-gray-500 mb-2">{post.date}</p>
+                  <h2 className="font-playfair text-2xl mb-3">
+                    <a href={`/blog/${post.slug}`} className="hover:text-navy transition-colors">
+                      {post.title}
                     </a>
-                  </div>
-                </article>
+                  </h2>
+                  <p className="text-gray-600 mb-4">{post.excerpt}</p>
+                  <a 
+                    href={`/blog/${post.slug}`} 
+                    className="text-navy font-medium hover:underline inline-flex items-center"
+                  >
+                    Continue Reading
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                      <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                    </svg>
+                  </a>
+                </div>
               ))}
             </div>
           </div>

@@ -37,32 +37,22 @@ const BlogSection: React.FC = () => {
           Insights and thoughts on drone technology, aerospace engineering, and academic research.
         </p>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="max-w-3xl mx-auto space-y-6">
           {blogPosts.map((post) => (
-            <article 
-              key={post.id} 
-              className="border border-gray-100 rounded-md overflow-hidden shadow-sm transition-all duration-300 hover:shadow-md"
-            >
-              <div className="bg-gray-100 h-48"></div>
-              <div className="p-6">
-                <p className="text-sm text-gray-500 mb-2">{post.date}</p>
-                <h3 className="font-playfair text-xl mb-2 line-clamp-2">
-                  <Link to={`/blog/${post.slug}`} className="hover:text-navy transition-colors">
-                    {post.title}
-                  </Link>
-                </h3>
-                <p className="text-gray-600 mb-4 line-clamp-3">{post.excerpt}</p>
-                <Link 
-                  to={`/blog/${post.slug}`} 
-                  className="text-navy font-medium hover:underline inline-flex items-center"
-                >
-                  Read more
-                  <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                  </svg>
-                </Link>
-              </div>
-            </article>
+            <div key={post.id} className="bg-white p-6 border border-gray-100 rounded-md shadow-sm">
+              <p className="text-sm text-gray-500 mb-2">{post.date}</p>
+              <h3 className="font-playfair text-xl mb-2">{post.title}</h3>
+              <p className="text-gray-600 mb-4">{post.excerpt}</p>
+              <Link 
+                to={`/blog/${post.slug}`} 
+                className="text-navy font-medium hover:underline inline-flex items-center"
+              >
+                Read more
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                </svg>
+              </Link>
+            </div>
           ))}
         </div>
         
