@@ -1,54 +1,41 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { ExternalLink } from 'lucide-react';
-
-// This would typically come from your data store
-const publications = [
-  {
-    id: 1,
-    title: 'Development and Validation of Digital Twins for VTOL UAVs',
-    journal: 'Journal of Aerospace Engineering',
-    year: 2024,
-    doi: 'https://doi.org/10.1000/xyz123',
-    authors: 'Aláez Gómez, D., Smith, J., Johnson, A.'
-  },
-  {
-    id: 2,
-    title: 'Aerodynamic Performance Analysis of Multi-Rotor Drones in Urban Environments',
-    journal: 'International Journal of Unmanned Systems',
-    year: 2023,
-    doi: 'https://doi.org/10.1000/abc456',
-    authors: 'Aláez Gómez, D., Williams, R., García, L.'
-  },
-  {
-    id: 3,
-    title: 'Simulation Methods for UAV Flight Testing in Adverse Weather Conditions',
-    journal: 'Aerospace Science and Technology',
-    year: 2022,
-    doi: 'https://doi.org/10.1000/def789',
-    authors: 'Brown, T., Aláez Gómez, D., Chen, H.'
-  },
-  {
-    id: 4,
-    title: 'Control System Design for Hybrid VTOL-Fixed Wing UAVs',
-    journal: 'IEEE Transactions on Aerospace and Electronic Systems',
-    year: 2022,
-    doi: 'https://doi.org/10.1000/ghi101',
-    authors: 'Aláez Gómez, D., Park, S.'
-  },
-  {
-    id: 5,
-    title: 'Comparative Analysis of Propulsion Systems for Small-Scale VTOL Drones',
-    journal: 'Journal of Propulsion and Power',
-    year: 2021,
-    doi: 'https://doi.org/10.1000/jkl112',
-    authors: 'Aláez Gómez, D., Lee, K., Martínez, J.'
-  }
-];
+import { publications as allPublications, Publication } from '@/data/publications';
+import { Button } from '@/components/ui/button';
+import { 
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow 
+} from '@/components/ui/table';
 
 const PublicationsPage: React.FC = () => {
+  const [filter, setFilter] = useState<string>('all');
+  const [sortBy, setSortBy] = useState<'year' | 'citations'>('year');
+  
+  const filteredPublications = allPublications
+    .filter(pub => {
+      if (filter === 'all') return true;
+      return pub.type === filter;
+    })
+    .sort((a, b) => {
+      if (sortBy === 'year') {
+        return b.year - a.year;
+      } else {
+        // Default to 0 if citations is undefined
+        const citesA = a.citations || 0;
+        const citesB = b.citations || 0;
+        return citesB - citesA;
+      }
+    });
+
+  const publicationTypes = ['all', ...new Set(allPublications.map(p => p.type))];
+  
   return (
     <>
       <Header />
@@ -63,53 +50,84 @@ const PublicationsPage: React.FC = () => {
         </section>
         
         <section className="section bg-white">
-          <div className="container max-w-4xl">
-            <div className="mb-12">
-              <h2 className="font-playfair text-2xl mb-6">Journal Articles</h2>
-              {publications
-                .filter(pub => pub.journal.includes('Journal') || pub.journal.includes('Transactions'))
-                .map((pub) => (
-                <div key={pub.id} className="mb-8 p-6 border border-gray-100 rounded-md shadow-sm">
-                  <h3 className="font-playfair text-xl mb-2">{pub.title}</h3>
-                  <p className="text-gray-600 mb-2">{pub.authors}</p>
-                  <p className="text-gray-500 mb-4">
-                    <span className="italic">{pub.journal}</span>, {pub.year}
-                  </p>
-                  <a 
-                    href={pub.doi} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-navy font-medium hover:underline inline-flex items-center"
+          <div className="container max-w-5xl">
+            <div className="mb-8 flex flex-wrap gap-4 justify-between items-center">
+              <div className="flex flex-wrap gap-2">
+                {publicationTypes.map(type => (
+                  <Button 
+                    key={type}
+                    variant={filter === type ? "default" : "outline"}
+                    onClick={() => setFilter(type)}
+                    className="capitalize"
                   >
-                    View Publication
-                    <ExternalLink size={16} className="ml-1" />
-                  </a>
-                </div>
-              ))}
+                    {type}
+                  </Button>
+                ))}
+              </div>
+              <div className="flex gap-2">
+                <Button 
+                  variant={sortBy === 'year' ? "default" : "outline"}
+                  onClick={() => setSortBy('year')}
+                >
+                  Sort by Year
+                </Button>
+                <Button 
+                  variant={sortBy === 'citations' ? "default" : "outline"}
+                  onClick={() => setSortBy('citations')}
+                >
+                  Sort by Citations
+                </Button>
+              </div>
             </div>
             
-            <div>
-              <h2 className="font-playfair text-2xl mb-6">Conference Papers</h2>
-              {publications
-                .filter(pub => !pub.journal.includes('Journal') && !pub.journal.includes('Transactions'))
-                .map((pub) => (
-                <div key={pub.id} className="mb-8 p-6 border border-gray-100 rounded-md shadow-sm">
-                  <h3 className="font-playfair text-xl mb-2">{pub.title}</h3>
-                  <p className="text-gray-600 mb-2">{pub.authors}</p>
-                  <p className="text-gray-500 mb-4">
-                    <span className="italic">{pub.journal}</span>, {pub.year}
-                  </p>
-                  <a 
-                    href={pub.doi} 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="text-navy font-medium hover:underline inline-flex items-center"
-                  >
-                    View Publication
-                    <ExternalLink size={16} className="ml-1" />
-                  </a>
-                </div>
-              ))}
+            <div className="overflow-hidden shadow ring-1 ring-black ring-opacity-5 rounded-lg">
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead>Publication</TableHead>
+                    <TableHead className="hidden md:table-cell">Year</TableHead>
+                    <TableHead className="hidden md:table-cell">Type</TableHead>
+                    <TableHead className="hidden md:table-cell">Citations</TableHead>
+                    <TableHead className="w-[100px]">Link</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {filteredPublications.map((pub) => (
+                    <TableRow key={pub.id}>
+                      <TableCell>
+                        <div>
+                          <p className="font-medium">{pub.title}</p>
+                          <p className="text-sm text-gray-500">{pub.authors}</p>
+                          <p className="text-sm text-gray-500 italic md:hidden">{pub.source}</p>
+                          <div className="md:hidden mt-1 flex gap-2">
+                            <span className="text-xs bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full">
+                              {pub.year}
+                            </span>
+                            <span className="text-xs bg-purple-100 text-purple-800 px-2 py-0.5 rounded-full capitalize">
+                              {pub.type}
+                            </span>
+                          </div>
+                        </div>
+                      </TableCell>
+                      <TableCell className="hidden md:table-cell">{pub.year}</TableCell>
+                      <TableCell className="hidden md:table-cell capitalize">{pub.type}</TableCell>
+                      <TableCell className="hidden md:table-cell">{pub.citations || '-'}</TableCell>
+                      <TableCell>
+                        {pub.doi && (
+                          <a 
+                            href={pub.doi.startsWith('http') ? pub.doi : `https://doi.org/${pub.doi}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-navy hover:text-blue-700 inline-flex items-center"
+                          >
+                            <ExternalLink size={18} />
+                          </a>
+                        )}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
             </div>
           </div>
         </section>
