@@ -108,8 +108,8 @@ const ResearchPage: React.FC = () => {
               <h3 className="font-playfair text-2xl mb-4 text-center">Interested in Research Collaboration?</h3>
               <p className="text-center mb-6 max-w-2xl mx-auto">
                 I'm actively seeking motivated students and researchers interested in drone technology, 
-                aerodynamics, and simulation. If you're passionate about aerospace engineering and UAVs, 
-                I welcome opportunities for collaboration.
+                aerodynamics, and simulation. If you are passionate about aerial robotics and UAVs, 
+                I'd love to hear from you.
               </p>
               <div className="text-center">
                 <Button asChild variant="outline" className="bg-transparent text-white border-white hover:bg-white hover:text-navy">
