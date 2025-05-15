@@ -1,6 +1,8 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 
 const HeroSection: React.FC = () => {
   return (
@@ -25,7 +27,18 @@ const HeroSection: React.FC = () => {
       {/* Content */}
       <div className="container relative z-20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div>
+          <div className="flex flex-col items-center md:items-start">
+            {/* Profile photo with white circle outline and shadow */}
+            <div className="mb-8 inline-block rounded-full border-4 border-white shadow-lg">
+              <Avatar className="h-36 w-36">
+                <AvatarImage 
+                  src="/lovable-uploads/48a1a046-cbcc-49d8-ac10-8aaaabe4f76b.png" 
+                  alt="Daniel Aláez Gómez" 
+                />
+                <AvatarFallback>DAG</AvatarFallback>
+              </Avatar>
+            </div>
+            
             <h1 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-semibold mb-6 leading-tight">
               Daniel Aláez Gómez
             </h1>
