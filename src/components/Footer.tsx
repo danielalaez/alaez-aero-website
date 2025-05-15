@@ -28,13 +28,13 @@ const Footer: React.FC = () => {
           <div>
             <h3 className="font-playfair text-xl mb-4">Connect</h3>
             <div className="flex items-center space-x-4">
-              <a href="https://www.linkedin.com" className="text-gray-600 hover:text-navy transition-colors" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
+              <a href="https://www.linkedin.com/in/danialaez/" className="text-gray-600 hover:text-navy transition-colors" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer">
                 <Linkedin size={20} />
               </a>
-              <a href="https://scholar.google.com" className="text-gray-600 hover:text-navy transition-colors" aria-label="Google Scholar" target="_blank" rel="noopener noreferrer">
+              <a href="https://scholar.google.com/citations?user=D5pW6RUAAAAJ&hl=es" className="text-gray-600 hover:text-navy transition-colors" aria-label="Google Scholar" target="_blank" rel="noopener noreferrer">
                 <ExternalLink size={20} />
               </a>
-              <a href="mailto:contact@danielalaez.com" className="text-gray-600 hover:text-navy transition-colors" aria-label="Email">
+              <a href="mailto:daniel.alaez@unavarra.es" className="text-gray-600 hover:text-navy transition-colors" aria-label="Email">
                 <Mail size={20} />
               </a>
             </div>

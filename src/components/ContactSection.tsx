@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Button } from '@/components/ui/button';
 import { Linkedin, FileText, Globe, Mail } from 'lucide-react';
@@ -34,7 +35,7 @@ const ContactSection: React.FC = () => {
             <h3 className="font-playfair text-2xl mt-12 mb-6">Connect</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <a 
-                href="https://scholar.google.com" 
+                href="https://scholar.google.com/citations?user=D5pW6RUAAAAJ&hl=es" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="flex items-center p-4 border border-gray-200 rounded-md hover:bg-gray-100 transition-colors"
@@ -44,7 +45,7 @@ const ContactSection: React.FC = () => {
               </a>
               
               <a 
-                href="https://www.linkedin.com" 
+                href="https://www.linkedin.com/in/danialaez/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="flex items-center p-4 border border-gray-200 rounded-md hover:bg-gray-100 transition-colors"
@@ -54,7 +55,7 @@ const ContactSection: React.FC = () => {
               </a>
               
               <a 
-                href="https://orcid.org" 
+                href="https://orcid.org/0000-0002-5346-2562" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="flex items-center p-4 border border-gray-200 rounded-md hover:bg-gray-100 transition-colors"
