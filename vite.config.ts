@@ -6,7 +6,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: '/alaez-aero-website/', // Replace with your actual repository name
+  base: '/your-repo-name/', // Replace with your actual repository name
   server: {
     host: "::",
     port: 8080,
