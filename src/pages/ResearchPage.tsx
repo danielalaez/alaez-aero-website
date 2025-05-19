@@ -13,7 +13,7 @@ const researchAreas = [
     description: `Development and implementation of digital twin models for vertical take-off and landing unmanned aerial vehicles. 
     This research focuses on creating accurate virtual replicas of physical drones to predict behavior, optimize design, and 
     enhance performance through simulation before physical testing.`,
-    icon: '🔄',
+    icon: '🤖',
     details: [
       'Real-time data integration from physical drones',
       'Predictive maintenance algorithms',
@@ -23,15 +23,15 @@ const researchAreas = [
   },
   {
     id: 2,
-    title: 'VTOL Drone Aerodynamics',
-    description: `Analysis and improvement of the aerodynamic properties of VTOL drones, with particular attention to the 
-    transition phase between vertical and horizontal flight. This research applies computational fluid dynamics and wind tunnel 
+    title: 'Drone Aerodynamics',
+    description: `Analysis and improvement of aerodynamic properties of drones, with particular attention to efficiency, 
+    stability, and performance across various flight regimes. This research applies computational fluid dynamics and wind tunnel 
     testing to optimize airflow and minimize drag.`,
     icon: '🛫',
     details: [
       'Computational Fluid Dynamics (CFD) modeling',
       'Wind tunnel testing and validation',
-      'Transition phase optimization',
+      'Flight performance optimization',
       'Energy efficiency improvements in varied flight conditions'
     ]
   },

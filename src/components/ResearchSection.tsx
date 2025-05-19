@@ -8,12 +8,12 @@ const researchAreas = [
     id: 1,
     title: 'Digital Twin Technology',
     description: 'Development of digital twin models for VTOL UAVs to enhance flight simulation, predictive maintenance, and performance optimization.',
-    icon: '🔄'
+    icon: '🤖'
   },
   {
     id: 2,
-    title: 'VTOL Drone Aerodynamics',
-    description: 'Analysis and improvement of aerodynamic properties in vertical take-off and landing drones, focusing on efficiency and stability.',
+    title: 'Drone Aerodynamics',
+    description: 'Analysis and improvement of aerodynamic properties in drones, focusing on efficiency, stability, and performance across different flight conditions.',
     icon: '🛫'
   },
   {
