@@ -44,6 +44,94 @@ const BlogPostPage: React.FC = () => {
     );
   }
 
+  // Function to render content based on the line type
+  const renderContent = (line: string, index: number) => {
+    // Image pattern: ![alt text](image-url)
+    const imageMatch = line.match(/!\[(.*?)\]\((.*?)\)/);
+    if (imageMatch) {
+      const alt = imageMatch[1];
+      const url = imageMatch[2];
+      return (
+        <div key={index} className="my-8">
+          <img 
+            src={url} 
+            alt={alt} 
+            className="w-full rounded-md shadow-md" 
+          />
+          {alt && <p className="text-sm text-gray-500 mt-2 text-center">{alt}</p>}
+        </div>
+      );
+    }
+    
+    // Code block pattern: ```language\ncode\n```
+    if (line.startsWith('```') && !line.endsWith('```')) {
+      const language = line.substring(3).trim();
+      let codeContent = '';
+      let i = index + 1;
+      
+      // Collect all lines until closing ```
+      while (i < post.content.split('\n').length && !post.content.split('\n')[i].startsWith('```')) {
+        codeContent += post.content.split('\n')[i] + '\n';
+        i++;
+      }
+      
+      return (
+        <div key={index} className="my-6">
+          {language && <div className="text-xs font-mono bg-gray-800 text-gray-300 px-4 py-1 rounded-t-md">{language}</div>}
+          <pre className="bg-gray-800 rounded-b-md rounded-tr-md overflow-x-auto">
+            <code className="block text-gray-300 p-4 font-mono text-sm">{codeContent}</code>
+          </pre>
+        </div>
+      );
+    }
+    
+    // Skip lines that are part of a code block
+    if (index > 0) {
+      let prevLineIndex = index - 1;
+      while (prevLineIndex >= 0) {
+        const prevLine = post.content.split('\n')[prevLineIndex];
+        if (prevLine.startsWith('```') && !prevLine.endsWith('```')) {
+          // We're inside a code block
+          let foundEnd = false;
+          for (let i = prevLineIndex + 1; i <= index; i++) {
+            if (post.content.split('\n')[i].startsWith('```')) {
+              foundEnd = true;
+              break;
+            }
+          }
+          if (!foundEnd) return null; // Skip rendering this line
+        }
+        prevLineIndex--;
+      }
+    }
+    
+    // Skip code block closing
+    if (line.startsWith('```') && line.length === 3) {
+      return null;
+    }
+    
+    // Handle regular markdown
+    if (line.startsWith('# ')) {
+      // Skip rendering H1 titles since we already have the title above
+      return null; 
+    } else if (line.startsWith('## ')) {
+      return <h2 key={index} className="font-playfair text-2xl font-medium mt-8 mb-4">{line.substring(3)}</h2>;
+    } else if (line.startsWith('- ')) {
+      const parsedContent = parseMarkdown(line.substring(2));
+      return <li key={index} className="ml-6 mb-2" dangerouslySetInnerHTML={{ __html: parsedContent }} />;
+    } else if (line.trim() === '') {
+      return <br key={index} />;
+    } else {
+      return (
+        <p 
+          key={index} 
+          className="mb-4 text-gray-800 leading-relaxed"
+          dangerouslySetInnerHTML={{ __html: parseMarkdown(line) }}
+        />
+      );
+    }
+  };
+
   return (
     <>
       <Header />
@@ -63,27 +151,7 @@ const BlogPostPage: React.FC = () => {
             <h1 className="font-playfair text-4xl md:text-5xl font-medium mb-6">{post.title}</h1>
             
             <div className="prose prose-lg max-w-none">
-              {post.content.split('\n').map((line, i) => {
-                if (line.startsWith('# ')) {
-                  // Skip rendering H1 titles since we already have the title above
-                  return null; 
-                } else if (line.startsWith('## ')) {
-                  return <h2 key={i} className="font-playfair text-2xl font-medium mt-8 mb-4">{line.substring(3)}</h2>;
-                } else if (line.startsWith('- ')) {
-                  const parsedContent = parseMarkdown(line.substring(2));
-                  return <li key={i} className="ml-6 mb-2" dangerouslySetInnerHTML={{ __html: parsedContent }} />;
-                } else if (line.trim() === '') {
-                  return <br key={i} />;
-                } else {
-                  return (
-                    <p 
-                      key={i} 
-                      className="mb-4 text-gray-800 leading-relaxed"
-                      dangerouslySetInnerHTML={{ __html: parseMarkdown(line) }}
-                    />
-                  );
-                }
-              })}
+              {post.content.split('\n').map((line, i) => renderContent(line, i))}
             </div>
           </div>
         </article>
