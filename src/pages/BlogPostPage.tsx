@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Header from '@/components/Header';
@@ -99,16 +98,23 @@ const BlogPostPage: React.FC = () => {
       
       return (
         <div key={index} className="my-6">
-          {language && <div className="text-xs font-mono bg-gray-800 text-gray-300 px-4 py-1 rounded-t-md">{language}</div>}
-          <SyntaxHighlighter
-            language={language}
-            style={oneDark}
-            showLineNumbers={true}
-            wrapLines={true}
-            className="rounded-b-md rounded-tr-md"
-          >
-            {codeContent}
-          </SyntaxHighlighter>
+          <div className="flex flex-col">
+            {language && <div className="text-xs font-mono bg-gray-800 text-gray-300 px-4 py-1 rounded-t-md">{language}</div>}
+            <SyntaxHighlighter
+              language={language}
+              style={oneDark}
+              showLineNumbers={true}
+              wrapLines={true}
+              className="rounded-b-md"
+              customStyle={{
+                margin: 0,
+                borderTopLeftRadius: language ? 0 : '0.375rem',
+                borderTopRightRadius: language ? 0 : '0.375rem',
+              }}
+            >
+              {codeContent}
+            </SyntaxHighlighter>
+          </div>
         </div>
       );
     }
