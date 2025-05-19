@@ -5,6 +5,28 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import { blogPosts, BlogPost } from '@/data/blogPosts';
 import { Button } from '@/components/ui/button';
+import { PrismLight as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
+
+// Import common languages
+import jsx from 'react-syntax-highlighter/dist/esm/languages/prism/jsx';
+import javascript from 'react-syntax-highlighter/dist/esm/languages/prism/javascript';
+import typescript from 'react-syntax-highlighter/dist/esm/languages/prism/typescript';
+import python from 'react-syntax-highlighter/dist/esm/languages/prism/python';
+import css from 'react-syntax-highlighter/dist/esm/languages/prism/css';
+import html from 'react-syntax-highlighter/dist/esm/languages/prism/markup';
+import json from 'react-syntax-highlighter/dist/esm/languages/prism/json';
+import bash from 'react-syntax-highlighter/dist/esm/languages/prism/bash';
+
+// Register languages with the highlighter
+SyntaxHighlighter.registerLanguage('jsx', jsx);
+SyntaxHighlighter.registerLanguage('javascript', javascript);
+SyntaxHighlighter.registerLanguage('typescript', typescript);
+SyntaxHighlighter.registerLanguage('python', python);
+SyntaxHighlighter.registerLanguage('css', css);
+SyntaxHighlighter.registerLanguage('html', html);
+SyntaxHighlighter.registerLanguage('json', json);
+SyntaxHighlighter.registerLanguage('bash', bash);
 
 const BlogPostPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -65,7 +87,7 @@ const BlogPostPage: React.FC = () => {
     
     // Code block pattern: ```language\ncode\n```
     if (line.startsWith('```') && !line.endsWith('```')) {
-      const language = line.substring(3).trim();
+      const language = line.substring(3).trim() || 'text';
       let codeContent = '';
       let i = index + 1;
       
@@ -78,9 +100,15 @@ const BlogPostPage: React.FC = () => {
       return (
         <div key={index} className="my-6">
           {language && <div className="text-xs font-mono bg-gray-800 text-gray-300 px-4 py-1 rounded-t-md">{language}</div>}
-          <pre className="bg-gray-800 rounded-b-md rounded-tr-md overflow-x-auto">
-            <code className="block text-gray-300 p-4 font-mono text-sm">{codeContent}</code>
-          </pre>
+          <SyntaxHighlighter
+            language={language}
+            style={oneDark}
+            showLineNumbers={true}
+            wrapLines={true}
+            className="rounded-b-md rounded-tr-md"
+          >
+            {codeContent}
+          </SyntaxHighlighter>
         </div>
       );
     }
