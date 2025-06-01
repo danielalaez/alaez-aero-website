@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -15,32 +14,13 @@ import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
 
-// Handle GitHub Pages SPA routing
-const basename = import.meta.env.PROD ? '/alaez-aero-website' : '';
-
 const App = () => {
-  // GitHub Pages SPA redirect handling
-  React.useEffect(() => {
-    // Check if we're in production and if there's a redirect query parameter
-    if (import.meta.env.PROD && window.location.search.includes('/?/')) {
-      const redirect = window.location.search
-        .substring(1)
-        .split('&')
-        .find(param => param.startsWith('/?/'));
-      
-      if (redirect) {
-        const path = redirect.substring(3).replace(/~and~/g, '&');
-        window.history.replaceState(null, '', basename + path);
-      }
-    }
-  }, []);
-
   return (
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
         <Sonner />
-        <BrowserRouter basename={basename}>
+        <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/blog" element={<BlogPage />} />

@@ -5,9 +5,6 @@ import { Link } from 'react-router-dom';
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
 
 const HeroSection: React.FC = () => {
-  // Get the base path for proper image loading in GitHub Pages
-  const basePath = import.meta.env.PROD ? '/alaez-aero-website' : '';
-  
   return (
     <section className="pt-32 pb-20 md:pt-40 md:pb-32 bg-[#F8F8F8] relative overflow-hidden">
       {/* Blurred circles background */}
@@ -35,7 +32,7 @@ const HeroSection: React.FC = () => {
             <div className="mb-8 inline-block rounded-full border-4 border-white shadow-lg">
               <Avatar className="h-36 w-36">
                 <AvatarImage 
-                  src={`${basePath}/lovable-uploads/48a1a046-cbcc-49d8-ac10-8aaaabe4f76b.png`}
+                  src="/lovable-uploads/48a1a046-cbcc-49d8-ac10-8aaaabe4f76b.png"
                   alt="Daniel Aláez Gómez" 
                 />
                 <AvatarFallback>DAG</AvatarFallback>

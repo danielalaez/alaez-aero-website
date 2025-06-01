@@ -9,8 +9,8 @@ const __dirname = path.dirname(__filename);
 const packageJsonPath = path.join(__dirname, '..', 'package.json');
 const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
 
-// Add homepage field
-packageJson.homepage = 'https://danielalaez.github.io/alaez-aero-website';
+// Add homepage field for personal GitHub Pages
+packageJson.homepage = 'https://danielalaez.github.io';
 
 // Add deployment scripts
 packageJson.scripts = {
@@ -28,4 +28,4 @@ if (!packageJson.devDependencies['gh-pages']) {
 }
 
 fs.writeFileSync(packageJsonPath, JSON.stringify(packageJson, null, 2));
-console.log('Updated package.json for GitHub Pages deployment');
+console.log('Updated package.json for personal GitHub Pages deployment');
