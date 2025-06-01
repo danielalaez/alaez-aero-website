@@ -18,7 +18,7 @@ try {
   execSync(`npx gh-pages -d dist`, { stdio: 'inherit' });
   
   console.log(`Successfully deployed to GitHub Pages!`);
-  console.log(`Your site will be available at: https://your-username.github.io/${REPO_NAME}/`);
+  console.log(`Your site will be available at: https://danielalaez.github.io/${REPO_NAME}/`);
   
 } catch (error) {
   console.error('Deployment failed:', error.message);

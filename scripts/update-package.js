@@ -6,7 +6,7 @@ const packageJsonPath = path.join(__dirname, '..', 'package.json');
 const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf8'));
 
 // Add homepage field
-packageJson.homepage = 'https://your-username.github.io/alaez-aero-website';
+packageJson.homepage = 'https://danielalaez.github.io/alaez-aero-website';
 
 // Add deployment scripts
 packageJson.scripts = {
